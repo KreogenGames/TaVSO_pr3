@@ -1,6 +1,7 @@
 package patternGame;
 
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.concurrent.TimeUnit;
@@ -17,6 +18,8 @@ public class GameGUI extends JFrame{
     ImageIcon third = new ImageIcon("src/patternGame/patterns/Decorator.jpg");
 
     private JPanel MainPanel;
+    private JPanel QuestionPanel;
+    private JLabel patternPicture;
     private JLabel RequestToUser;
     private JRadioButton abstractFactoryRadioButton;
     private JRadioButton builderRadioButton;
