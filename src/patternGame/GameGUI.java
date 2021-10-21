@@ -1,9 +1,9 @@
 package patternGame;
 
 import javax.swing.*;
-import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.concurrent.TimeUnit;
 
 public class GameGUI extends JFrame{
 
@@ -17,8 +17,6 @@ public class GameGUI extends JFrame{
     ImageIcon third = new ImageIcon("src/patternGame/patterns/Decorator.jpg");
 
     private JPanel MainPanel;
-    private JPanel QuestionPanel;
-    private JLabel patternPicture;
     private JLabel RequestToUser;
     private JRadioButton abstractFactoryRadioButton;
     private JRadioButton builderRadioButton;
@@ -31,6 +29,7 @@ public class GameGUI extends JFrame{
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setContentPane(MainPanel);
         randomizerForPicture();
+        sendAnswerButton.addActionListener(new ButtonEventListener());
         this.pack();
     }
 
@@ -50,9 +49,44 @@ public class GameGUI extends JFrame{
         return RequestToUser;
     }
 
+    class ButtonEventListener implements ActionListener {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            String message = "";
+            if(pictureName.equals(patternName1)){
+                if(abstractFactoryRadioButton.isSelected()) {
+                    message += "You have been given the correct answer\n";
+                } else {
+                    message += "You have been given incorrect answer\n";
+                }
+            } else if(pictureName.equals(patternName2)){
+                if(builderRadioButton.isSelected()) {
+                    message += "You have been given the correct answer\n";
+                } else {
+                    message += "You have been given incorrect answer\n";
+                }
+            } else if(pictureName.equals(patternName3)){
+                if(decoratorRadioButton.isSelected()) {
+                    message += "You have been given the correct answer\n";
+                } else {
+                    message += "You have been given incorrect answer\n";
+                }
+            }
+            JOptionPane.showMessageDialog(GameGUI.this,
+                    message);
+            try {
+                TimeUnit.SECONDS.sleep(5);
+            } catch (InterruptedException ex) {
+                ex.printStackTrace();
+            }
+            randomizerForPicture();
+            revalidate();
+            repaint();
+        }
+    }
+
     public static void main(String[] args){
         JFrame frame = new GameGUI("Pattern game");
         frame.setVisible(true);
     }
-
 }

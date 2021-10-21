@@ -27,6 +27,7 @@ public class GameGUITest {
         JFrame frame = new GameGUI("Pattern game");
         frame.setVisible(true);
         frame.isVisible();
+        frame.isEnabled();
     }
 
     @Test
