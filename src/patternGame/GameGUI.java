@@ -30,10 +30,25 @@ public class GameGUI extends JFrame{
         super(title);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setContentPane(MainPanel);
+        randomizerForPicture();
         this.pack();
     }
 
-
+    public JLabel randomizerForPicture(){
+        int picture = (int) (Math.random() * 3);
+        if(picture == 1){
+            pictureName = patternName1;
+            RequestToUser.setIcon(first);
+            return RequestToUser;
+        } else if(picture == 2){
+            pictureName = patternName2;
+            RequestToUser.setIcon(second);
+            return RequestToUser;
+        }
+        pictureName = patternName3;
+        RequestToUser.setIcon(third);
+        return RequestToUser;
+    }
 
     public static void main(String[] args){
         JFrame frame = new GameGUI("Pattern game");
